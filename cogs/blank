@@ -1,0 +1,10 @@
+#import discord,random
+#from discord.ext import commands
+#class TextCommands(commands.Cog):
+    
+ #   def __init__(self,client):
+  #      self.client= client
+
+
+#def setup(client): #setup ca sa unesti cogul la bot
+#    client.add_cog(TextCommands(client))
