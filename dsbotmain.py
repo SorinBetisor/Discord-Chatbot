@@ -3,13 +3,15 @@ import discord,random,os,json
 from discord.ext import commands
 from numpy import isin
 from discord.utils import get
+intents = discord.Intents.default() #gateway must be on
+intents.members = True
 def get_prefix(client,message):
         with open ('prefixes.json','r') as f:
             prefixes= json.load(f)
 
         return prefixes[str(message.guild.id)]
-
-client = commands.Bot(command_prefix= get_prefix)
+intents = discord.Intents().all()
+client = commands.Bot(command_prefix= get_prefix,intents=intents)
 
 @client.event
 async def on_guild_join(guild): #when bot is invited
@@ -52,9 +54,9 @@ async def reload(ctx,extension): #reload
     client.load_extension(f'cogs.{extension}' )
     await ctx.send('Reloaded.')
 
-@client.event #RABOTAI TUT
+@client.event #automatic member role assigment
 async def on_member_join(member):
-    role = discord.utils.get(member.guild.roles, name= 'Member')
+    role = discord.utils.get(member.guild.roles, name='Member')
     await member.add_roles(role)
 
 for filename in os.listdir('./cogs'): #checking cogs file
@@ -70,4 +72,4 @@ async def on_command_error(ctx,error):
         await ctx.send('Please specify the required argument.')
     elif isinstance(error, commands.MissingPermissions):
         await ctx.send('Not enough permissions. ')
-client.run('OTMzNjg4MzA0OTU0NjUwNjY2.YelK_g.WrX--j7KVREvgKMX0aXGTRUO-Bs')
+client.run('OTMzNjg4MzA0OTU0NjUwNjY2.YelK_g.n3YeauB5_KLHTRkSzJA3EXS3ikg')
