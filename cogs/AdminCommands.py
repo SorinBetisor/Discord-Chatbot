@@ -1,15 +1,17 @@
 import discord,random,asyncio
 from discord.ext import commands
+
 class DurationConverter(commands.Converter):
     async def convert(self,ctx,argument):
         amount= argument[:-1]
         unit= argument[-1]
 
         possibleunits=['s','m','h','d']
-        if amount.isdigit() and unit in possibleunits:
+        if (amount.isdigit()) and (unit in possibleunits):
             return (int(amount), unit)
 
         raise commands.BadArgument(message='Not a valid duration')
+
 class AdminCommands(commands.Cog):
     
     def __init__(self,client):
@@ -22,14 +24,15 @@ class AdminCommands(commands.Cog):
 
     @commands.command() #tempban
     @commands.has_permissions(ban_members=True)
-    async def tempban(self,ctx,member: commands.MemberConverter, duration: DurationConverter,*,reason=None):
+    async def tempban(self,ctx,member: commands.MemberConverter, duration: DurationConverter):
         multiplier= {'s':1,'m':60,'h':3600,'d':86400}
         amount,unit= duration
-
-        await member.ban(duration= duration,reason=reason)
+        
+        await ctx.guild.ban(member)
         await ctx.send(f'{member} has been banned. The duration is = {amount}{unit}')
         await asyncio.sleep(amount*multiplier[unit])
         await ctx.guild.unban(member)
+   
     @commands.command() #ban
     @commands.has_permissions(ban_members=True)
     async def ban(self,ctx,member : commands.MemberConverter, *,reason=None):

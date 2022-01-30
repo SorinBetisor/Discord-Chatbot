@@ -72,4 +72,4 @@ async def on_command_error(ctx,error):
         await ctx.send('Please specify the required argument.')
     elif isinstance(error, commands.MissingPermissions):
         await ctx.send('Not enough permissions. ')
-client.run('OTMzNjg4MzA0OTU0NjUwNjY2.YelK_g.n3YeauB5_KLHTRkSzJA3EXS3ikg')
+client.run('OTMzNjg4MzA0OTU0NjUwNjY2.YelK_g.9qFKg3sCha2QQK178K-xp4M0Cys')
