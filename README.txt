@@ -1,5 +1,5 @@
 # Current features:
- Automatic role assigment \n
+ Automatic role assigment ne
  Text commands (ping,hello,etc)
  Admin commands (kick,ban,tempban)
  Booting and shutting down events
