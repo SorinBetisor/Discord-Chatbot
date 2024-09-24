@@ -25,7 +25,15 @@ This project is a Python-based Discord bot built with `discord.py`. The bot feat
     Create a prefixes.json file in the root directory to store server-specific prefixes. Example content:
     {
     "server_id": "!"
-    }```
+    }
+```
+
+###Owner commands
+```bash
+!load <extension_name>
+!unload <extension_name>
+!reload <extension_name>
+```
 
 ###Handling Errors
 Common error cases are handled gracefully:
